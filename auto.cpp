@@ -9,6 +9,7 @@
 #include "motor_control.h"
 #include <unistd.h>
 #include "ultrasonic.h"
+#include "motor_control.h"
 
 bool on_flag = false;
 bool running = true;

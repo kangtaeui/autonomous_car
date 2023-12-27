@@ -2,27 +2,38 @@
 Using Nano editor
 # Pin setting ( code )
 1) Ultra Sonic 3ea ( HC-SR04 )
-   GPIO0 - TRIG
-   GPIO1 - ECHO
    
-   GPIO5 - TRIG
-   GPIO6 - ECHO
+   GPIO0 = TRIG
    
-   GPIO26 - TRIG
-   GPIO16 - ECHO
+   GPIO1 = ECHO
+   
+   GPIO5 = TRIG
+   
+   GPIO6 = ECHO
+   
+   GPIO26 = TRIG
+   
+   GPIO16 = ECHO
 
-2) Motor Driver ( L298N )
-   GPIO22 - IN1
-   GPIO23 - IN2
-   GPIO17 - IN3
-   GPIO18 - IN4
+3) Motor Driver ( L298N )
+   
+   GPIO22 = IN1
+   
+   GPIO23 = IN2
+   
+   GPIO17 = IN3
+   
+   GPIO18 = IN4
 
-   GPIO12 - ENA
-   GPIO13 - ENB
+   GPIO12 = ENA
+   
+   GPIO13 = ENB
 
-3) Bluetooth ( HC-06 )
-   GPIO15 - Tx -> Rx ( MCU )
-   GPIO14 - Rx -> Tx ( MCU )
+4) Bluetooth ( HC-06 )
+   
+   GPIO15 = Tx -> Rx ( MCU )
+   
+   GPIO14 = Rx -> Tx ( MCU )
 
    
 

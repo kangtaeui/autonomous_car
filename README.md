@@ -1,5 +1,5 @@
 # Raspberrypi RC CAR ( AUTONOMOUS DRIVE )
-Using Nano editor
+Use Nano editor
 # Pin setting ( code )
 1) Ultra Sonic 3ea ( HC-SR04 )
    

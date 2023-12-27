@@ -32,8 +32,9 @@ Using Nano editor
 
 # Flow chart
 
-![Flowchart1](https://github.com/kangtaeui/autonomous_car/assets/141004174/e06943ba-cbcd-4785-b327-90eb13cdc314)
+![flow](https://github.com/kangtaeui/autonomous_car/assets/141004174/5cb73acf-046b-410c-92c0-958805be5250)
 
+// C = CENTER // R = RIGHT // L = LEFT  // ALL = ALL DISTANCE
 
 
 # Video

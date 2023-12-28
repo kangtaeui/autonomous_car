@@ -38,7 +38,7 @@ void *ThreadFunction(void* arg) {
         double distance1 = us1->GetDistance(30000);
         double distance2 = us2->GetDistance(30000);
         double distance3 = us3->GetDistance(30000);
-        //최근값 불러오기 값을 읽어들일 떄 lock과 unlock을 한다. 뮤텍스를 보호하기 위해서
+        //최근값 불러오기 값을 읽어들일 때 뮤텍스를 lock과 unlock을 한다. 뮤텍스를 보호하기 위해서
         us1->SetLatestDistance(distance1);
         us2->SetLatestDistance(distance2);
         us3->SetLatestDistance(distance3);

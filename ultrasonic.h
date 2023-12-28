@@ -7,7 +7,6 @@ class UltraSound {
 public:
     void Init(unsigned int trigger, unsigned int echo, int sensorNumber, double xCoordinate);
     double GetDistance(unsigned int timeout);
-    double GetHorizontalDistance(const UltraSound& otherSensor) const;
     int GetSensorNumber() const;
     double GetLatestDistance() const;
     void SetLatestDistance(double distance);

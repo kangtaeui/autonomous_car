@@ -16,7 +16,6 @@ private:
     int trigger;
     int echo;
     int sensorNumber;
-    double xCoordinate;
 
     volatile long startTimeUsec;
     volatile long endTimeUsec;

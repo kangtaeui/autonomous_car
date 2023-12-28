@@ -3,8 +3,9 @@
 #include <cmath>
 
 const double UltraSound::DISTANCE_CONVERSION_FACTOR = 58.7734;
+//나눠주는 값 58.7734
 
-void UltraSound::Init(unsigned int trigger, unsigned int echo, int sensorNumber, double xCoordinate) {
+void UltraSound::Init(unsigned int trigger, unsigned int echo, int sensorNumber) {
     this->trigger = trigger;
     this->echo = echo;
     this->sensorNumber = sensorNumber;
@@ -23,6 +24,7 @@ void UltraSound::Init(unsigned int trigger, unsigned int echo, int sensorNumber,
 }
 
 double UltraSound::GetDistance(unsigned int timeout) {
+    //거리 잴 때 lock
     pthread_mutex_lock(const_cast<pthread_mutex_t*>(&mutex));
 
     //sensor trigger occur
@@ -49,6 +51,7 @@ double UltraSound::GetDistance(unsigned int timeout) {
 
     //new value in previousDistanceCm
     previousDistanceCm = distanceCm;
+    //저장했으면 unlock
     pthread_mutex_unlock(const_cast<pthread_mutex_t*>(&mutex));
 
     if (endTimeUsec != 0)

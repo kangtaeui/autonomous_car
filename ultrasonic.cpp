@@ -20,10 +20,6 @@ void UltraSound::Init(unsigned int trigger, unsigned int echo, int sensorNumber,
         exit(-1);
     }
 }
-double UltraSound::GetHorizontalDistance(const UltraSound& otherSensor) const {
-    return std::abs(xCoordinate - otherSensor.xCoordinate);
-}
-
 
 double UltraSound::GetDistance(unsigned int timeout) {
     pthread_mutex_lock(const_cast<pthread_mutex_t*>(&mutex));

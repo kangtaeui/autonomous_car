@@ -31,8 +31,4 @@ private:
     static const double DISTANCE_CONVERSION_FACTOR;
 };
 
-void AdjustSpeedBasedOnDistance(double distance, int& speed);
-
-double CalculateAngle(double distance1, double distance3);
-
 #endif // ULTRASONIC_H

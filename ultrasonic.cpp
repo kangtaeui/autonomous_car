@@ -9,7 +9,6 @@ void UltraSound::Init(unsigned int trigger, unsigned int echo, int sensorNumber)
     this->trigger = trigger;
     this->echo = echo;
     this->sensorNumber = sensorNumber;
-    this->xCoordinate = xCoordinate;
 
     gpioSetMode(trigger, PI_OUTPUT);
     gpioSetMode(echo, PI_INPUT);

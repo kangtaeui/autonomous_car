@@ -1,6 +1,6 @@
 #include "motor_control.h"
 #include <pigpio.h>
-
+//하나하나 맵핑하여 어떻게 동작할지 넣어주기
 void Driving_forward(int in1, int in2, int in3, int in4, int speed)
 {
     gpioWrite(in1, 0);

@@ -16,6 +16,6 @@ void Driving_forward(int in1, int in2, int in3, int in4, int speed);
 void Driving_backward(int in1, int in2, int in3, int in4, int speed);
 void Driving_left(int in1, int in2, int in3, int in4, int speed);
 void Driving_right(int in1, int in2, int in3, int in4, int speed);
-void Driving_stop(int in1, int in2, int in3, int in4, speed);
+void Driving_stop(int in1, int in2, int in3, int in4, int speed);
 
 #endif

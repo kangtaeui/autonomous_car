@@ -117,7 +117,7 @@ void *BluetoothControlThread(void* arg) {
 
 //if you input crtl+c, not excute 
 void signalHandler(int signum) {
-    gpioPWM(ENABLE, 0);
+    gpioPWM(ENA, 0);
     gpioPWM(ENB, 0);
     gpioTerminate();
     exit(signum);
@@ -181,9 +181,9 @@ int main() {
     gpioSetMode(IN2, PI_OUTPUT);
     gpioSetMode(IN3, PI_OUTPUT);
     gpioSetMode(IN4, PI_OUTPUT);
-    gpioSetMode(ENABLE, PI_OUTPUT);
+    gpioSetMode(ENA, PI_OUTPUT);
     gpioSetMode(ENB, PI_OUTPUT);
-    gpioSetPWMfrequency(ENABLE, 50);
+    gpioSetPWMfrequency(ENA, 50);
     gpioSetPWMfrequency(ENB, 50);
 
     serClose(serial_port);

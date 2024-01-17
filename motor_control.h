@@ -7,7 +7,7 @@
 #define IN2 23 // GPIO pin for left motor input 2
 #define IN3 17 // GPIO pin for right motor input 3
 #define IN4 18 // GPIO pin for right motor input 4
-#define ENABLE 12 // GPIO pin for motor enable (PWM)
+#define ENA 12 // GPIO pin for motor enable (PWM)
 #define ENB 13 // GPIO pin for motor enable (PWM)
 
 

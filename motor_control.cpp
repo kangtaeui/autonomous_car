@@ -7,7 +7,7 @@ void Driving_forward(int in1, int in2, int in3, int in4, int speed)
     gpioWrite(in2, 1);
     gpioWrite(in3, 0);
     gpioWrite(in4, 1);
-    gpioPWM(ENABLE, speed);
+    gpioPWM(ENA, speed);
     gpioPWM(ENB, speed);
 }
 
@@ -17,7 +17,7 @@ void Driving_backward(int in1, int in2, int in3, int in4, int speed)
     gpioWrite(in2, 0);
     gpioWrite(in3, 1);
     gpioWrite(in4, 0);
-    gpioPWM(ENABLE, speed);
+    gpioPWM(ENA, speed);
     gpioPWM(ENB, speed);
 }
 
@@ -27,7 +27,7 @@ void Driving_left(int in1, int in2, int in3, int in4, int speed)
     gpioWrite(in2, 1);
     gpioWrite(in3, 0);
     gpioWrite(in4, 0);
-    gpioPWM(ENABLE, speed);
+    gpioPWM(ENA, speed);
     gpioPWM(ENB, speed);
 }
 
@@ -37,7 +37,7 @@ void Driving_right(int in1, int in2, int in3, int in4, int speed)
     gpioWrite(in2, 0);
     gpioWrite(in3, 0);
     gpioWrite(in4, 1);
-    gpioPWM(ENABLE, speed);
+    gpioPWM(ENA, speed);
     gpioPWM(ENB, speed);
 }
 
@@ -47,6 +47,6 @@ void Driving_stop(int in1, int in2, int in3, int in4)
     gpioWrite(in2, 1);
     gpioWrite(in3, 1);
     gpioWrite(in4, 1);
-    gpioPWM(ENABLE, speed);
+    gpioPWM(ENA, speed);
     gpioPWM(ENB, speed);
 }

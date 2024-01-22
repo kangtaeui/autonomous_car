@@ -6,12 +6,12 @@ const double UltraSound::DISTANCE_CONVERSION_FACTOR = 58.7734;
 //나눠주는 값 58.7734
 
 void UltraSound::Init(unsigned int trigger, unsigned int echo, int sensorNumber) {
-    this->trigger = trigger;
-    this->echo = echo;
-    this->sensorNumber = sensorNumber;
+    this->trigger = trigger;    //trigger pin set
+    this->echo = echo;          //echo pin set
+    this->sensorNumber = sensorNumber;    //sensor's Number set
 
-    gpioSetMode(trigger, PI_OUTPUT);
-    gpioSetMode(echo, PI_INPUT);
+    gpioSetMode(trigger, PI_OUTPUT);        //trigger pin mapping in gpio
+    gpioSetMode(echo, PI_INPUT);            //echo pin mapping in gpio
     gpioWrite(trigger, 0);
     gpioSleep(PI_TIME_RELATIVE, 0.5, 0);
 
@@ -23,7 +23,7 @@ void UltraSound::Init(unsigned int trigger, unsigned int echo, int sensorNumber)
 }
 
 double UltraSound::GetDistance(unsigned int timeout) {
-    //거리 잴 때 lock
+    //this is mutex method, so you have to 
     pthread_mutex_lock(const_cast<pthread_mutex_t*>(&mutex));
 
     //sensor trigger occur

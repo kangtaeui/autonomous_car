@@ -9,17 +9,18 @@
 #include <unistd.h>
 #include <cmath>
 
+
 bool on_flag = false;
 bool running = true;
 
 
-const char* device = "/dev/ttyS0";
-const int baudrate = 9600;
+const char* device = "/dev/ttyS0";    //set uart port
+const int baudrate = 9600;        //set uart communication speed.
 
 char* mutableDevice = const_cast<char*>(device);
 int serial_port = serOpen(mutableDevice, baudrate, 0);
 
-const double TURN_THRESHOLD_DISTANCE = 38.0;
+const double TURN_THRESHOLD_DISTANCE = 38.0;    //Turn left or right if the distance is less than 38.0
 
 void *ThreadFunction(void* arg) {
     //ultrasound를 동적 생성
@@ -93,14 +94,15 @@ void *ThreadFunction(void* arg) {
 }
 
 UltraSound US1, US2, US3;
+//bluetooth thread
 void *BluetoothControlThread(void* arg) {
     int serial_port = *(int*)arg;
 
     try {
-        while (running) {
+        while (running) {    //running is initialized true.
             if (serDataAvailable(serial_port) > 0) {
-                char input = serReadByte(serial_port);
-                if (input == '2' && on_flag) {
+                char input = serReadByte(serial_port);    //receive data
+                if (input == '2' && on_flag) {    //if user input '2', Drive stop and on_flag's initialized 0
                     std::cout << "Stopping motors" << std::endl;
                     Driving_stop(IN1, IN2, IN3, IN4, 100);
                     on_flag = false;
@@ -115,7 +117,7 @@ void *BluetoothControlThread(void* arg) {
     return nullptr;
 }
 
-//if you input crtl+c, not excute 
+//if you input crtl+c, stop compile and Drive stop.
 void signalHandler(int signum) {
     gpioPWM(ENA, 0);
     gpioPWM(ENB, 0);
@@ -124,12 +126,12 @@ void signalHandler(int signum) {
 }
 
 int main() {
-    gpioInitialise();
+    gpioInitialise();    //gpioInitialze when using a multithread.
 
-    signal(SIGINT, signalHandler);
+    signal(SIGINT, signalHandler);    //this code make complier can recieve end signal.
 
-    const char* device = "/dev/ttyS0";
-    const int baudrate = 9600;      //Baudrate 설정
+    const char* device = "/dev/ttyS0";    //set uart port
+    const int baudrate = 9600;      //set Baudrate 
 
     //gpio initialize
     if (gpioInitialise() < 0) {
@@ -138,7 +140,7 @@ int main() {
     }
 
     char* mutableDevice = const_cast<char*>(device);
-    int serial_port = serOpen(mutableDevice, baudrate, 0);
+    int serial_port = serOpen(mutableDevice, baudrate, 0);    //serial port open
     if (serial_port < 0) {
         std::cerr << "Failed to open serial port. Exiting..." << std::endl;
         gpioTerminate();
@@ -151,32 +153,35 @@ int main() {
 
     //각 스레드 생성
     pthread_t thread1, thread2, thread3, bluetoothThread;
+    //ultra1
     if (pthread_create(&thread1, nullptr, ThreadFunction, reinterpret_cast<void*>(&US1)) != 0) {
         std::cerr << "Thread creation failed. Exiting..." << std::endl;
         return -1;
     }
-
+    //ultra2
     if (pthread_create(&thread2, nullptr, ThreadFunction, reinterpret_cast<void*>(&US2)) != 0) {
         std::cerr << "Thread creation failed. Exiting..." << std::endl;
         return -1;
     }
-
+    //ultra3
     if (pthread_create(&thread3, nullptr, ThreadFunction, reinterpret_cast<void*>(&US3)) != 0) {
         std::cerr << "Thread creation failed. Exiting..." << std::endl;
         return -1;
     }
-
+    //bluetooth
     if (pthread_create(&bluetoothThread, nullptr, BluetoothControlThread, reinterpret_cast<void*>(&serial_port)) != 0) {
         std::cerr << "Thread creation failed. Exiting..." << std::endl;
         return -1;
     }
 
-    //스레드 종료 및 조인
+    //thread join
     pthread_join(thread1, nullptr);
     pthread_join(thread2, nullptr);
     pthread_join(thread3, nullptr);
     pthread_join(bluetoothThread, nullptr);
-
+    
+    //gpio mapping     IN1,IN2,IN3,IN4,ENA,ENB
+    //Initialize ENA, ENB PWM
     gpioSetMode(IN1, PI_OUTPUT);
     gpioSetMode(IN2, PI_OUTPUT);
     gpioSetMode(IN3, PI_OUTPUT);
@@ -185,8 +190,11 @@ int main() {
     gpioSetMode(ENB, PI_OUTPUT);
     gpioSetPWMfrequency(ENA, 50);
     gpioSetPWMfrequency(ENB, 50);
-
+    
+    //Serial close
     serClose(serial_port);
+    
+    //gpio close
     gpioTerminate();
 
     return 0;

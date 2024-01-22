@@ -22,8 +22,9 @@ void UltraSound::Init(unsigned int trigger, unsigned int echo, int sensorNumber)
     }
 }
 
+//measure Distance
 double UltraSound::GetDistance(unsigned int timeout) {
-    //this is mutex method, so you have to 
+    //this is mutex method, so you need to use lock
     pthread_mutex_lock(const_cast<pthread_mutex_t*>(&mutex));
 
     //sensor trigger occur
